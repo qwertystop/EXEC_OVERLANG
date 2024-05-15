@@ -1,3 +1,4 @@
+class_name Index
 extends Node
 
 @export var scene_dir: String
@@ -14,18 +15,25 @@ func _ready():
 
 # Find a described line based on known parameters.
 # If scene is not known, searches all scenes in index.
-func find_line(params: Dictionary, scene_key: int):
-	var test_line = RipLine.new()._setup(params, true)
-	var found: RipLine
-	match scene_key:
-		null:
-			for key in range(scenes.size()):
-				found = scenes[key].search_lines(test_line)
-				if found:
-					return [key, found]
-		_:
-			found = scenes[scene_key].search_lines(test_line)
-			return [scene_key, found]
+func find_line(target: RipLine, scene_key: int=-1):
+	var found
+	var search_range = range(scenes.size())
+	if scene_key == -1:
+		# in absence of a defined start point, start at the beginning
+		scene_key = 0
+	var key = scene_key
+	while (true):
+		found = scenes[key].search_lines(target)
+		if found:
+			return [key, found]
+		else:
+			# increment, wrapping around
+			key = (key + 1) % scenes.size()
+			if key == scene_key:
+				# we've reached the start again
+				break
+	# Nothing found
+	return [-1, []]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

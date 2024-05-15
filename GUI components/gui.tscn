@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://34qapvhh5wtf"]
+
+[ext_resource type="Script" path="res://GUI components/GUI.gd" id="1_0nb7y"]
+[ext_resource type="PackedScene" uid="uid://80vwiarsf8i0" path="res://GUI components/DialogueDisplay.tscn" id="2_rhbps"]
+
+[sub_resource type="SystemFont" id="SystemFont_nmxoo"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_svb5j"]
+default_font = SubResource("SystemFont_nmxoo")
+default_font_size = 30
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 5
+
+[node name="GUI" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_0nb7y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_svb5j")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="USDialogueDisplay" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_rhbps")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="JPDialogueDisplay" parent="VBoxContainer/MarginContainer2" instance=ExtResource("2_rhbps")]
+unique_name_in_owner = true
+layout_mode = 2

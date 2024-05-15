@@ -1,43 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cem5fmcq21xgj"]
+[gd_scene load_steps=4 format=3 uid="uid://cem5fmcq21xgj"]
 
-[ext_resource type="PackedScene" uid="uid://daatryernoeia" path="res://index.tscn" id="1_m481f"]
+[ext_resource type="Script" path="res://pine.gd" id="2_x0uh8"]
+[ext_resource type="Script" path="res://Controls.gd" id="3_omjdk"]
+[ext_resource type="PackedScene" uid="uid://34qapvhh5wtf" path="res://GUI components/gui.tscn" id="3_whaj1"]
 
 [node name="Base" type="Node"]
 
-[node name="JPIndex" parent="." instance=ExtResource("1_m481f")]
-scene_dir = "res://Ripped scenes/JP/"
+[node name="Controls" type="Node" parent="." node_paths=PackedStringArray("scanner_interface")]
+script = ExtResource("3_omjdk")
+scanner_interface = NodePath("PINE")
 
-[node name="USIndex" parent="." instance=ExtResource("1_m481f")]
-scene_dir = "res://Ripped scenes/US/"
+[node name="PINE" type="GDPine" parent="Controls"]
+script = ExtResource("2_x0uh8")
 
-[node name="PINE interface" type="Node" parent="."]
+[node name="Timer" type="Timer" parent="Controls"]
+autostart = true
 
-[node name="GUI" type="Control" parent="."]
-layout_direction = 2
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="GUI" parent="." instance=ExtResource("3_whaj1")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
-layout_mode = 2
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer"]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI/VBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer"]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI/VBoxContainer/PanelContainer2"]
-layout_mode = 2
-
-[node name="PanelContainer3" type="PanelContainer" parent="GUI/VBoxContainer"]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI/VBoxContainer/PanelContainer3"]
-layout_mode = 2
+[connection signal="update_dialogue" from="Controls" to="GUI" method="_on_controls_update_dialogue"]
+[connection signal="timeout" from="Controls/Timer" to="Controls" method="dialog_rescan"]

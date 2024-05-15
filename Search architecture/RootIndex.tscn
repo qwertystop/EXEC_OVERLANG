@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjpsvl4sm7o2w"]
+
+[ext_resource type="Script" path="res://Search architecture/RootIndex.gd" id="1_b211l"]
+[ext_resource type="PackedScene" uid="uid://daatryernoeia" path="res://Search architecture/Index.tscn" id="2_yxrg8"]
+
+[node name="RootIndex" type="Node"]
+script = ExtResource("1_b211l")
+
+[node name="JPIndex" parent="." instance=ExtResource("2_yxrg8")]
+unique_name_in_owner = true
+scene_dir = "res://Ripped scenes/JP/"
+
+[node name="USIndex" parent="." instance=ExtResource("2_yxrg8")]
+unique_name_in_owner = true
+scene_dir = "res://Ripped scenes/US/"

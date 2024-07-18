@@ -11,7 +11,10 @@ extends GDPine
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.init_default_ipc(PCSX2)
+	self.init_default_ipc(GDPine.PCSX2)
+	# For something other than the default PCSX2 IPC connection, use one of the following:
+	# self.init_default_ipc(GDPine.RPCS3)
+	# self.init_ipc(slot, emulator_name, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

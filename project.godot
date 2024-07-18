@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="PineViewer"
+config/name="EXEC_OVERLANG"
+config/description="A framework for providing data lookups in a sidebar window in emulated games, such as for translation comparison in livestreams. Reference implementation is configured for Ar Tonelico 2."
 run/main_scene="res://Base.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"

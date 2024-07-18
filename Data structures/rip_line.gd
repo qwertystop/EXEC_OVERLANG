@@ -1,6 +1,8 @@
 class_name RipLine
 extends Resource
 
+# This class defines an individual line of dialogue in your index.
+
 @export var unk0: int
 @export var unk1: int
 @export var unk2: int

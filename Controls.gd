@@ -11,7 +11,7 @@ func _ready():
 	# just so it's never null
 	current_line = RipLine.new()
 
-
+# Manual rescan did not prove necessary, a poll timer did fine.
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(_delta):
 #	if Input.is_action_just_pressed("dialog_rescan"):

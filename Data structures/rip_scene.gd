@@ -1,6 +1,8 @@
 class_name RipScene
 extends Resource
 
+# This class acts as an ordered collection of lines of dialogue.
+
 @export var lines: Array[RipLine]
 
 func _setup(name: String, lines_: Array[RipLine]):

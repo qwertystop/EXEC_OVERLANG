@@ -1,5 +1,8 @@
 extends Node
 
+# Organizes the two collections of data: That which you read from the game,
+# and that which corresponds to it from outside data (in this case, a rip from another language)
+
 var last_scene = -1;
 
 func _match_subindex(subindex: StringName):

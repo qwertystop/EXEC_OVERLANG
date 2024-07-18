@@ -1,6 +1,8 @@
 class_name Index
 extends Node
 
+# Searchable list of dialogue scenes
+
 @export var scene_dir: String
 @export var scenes: Array[RipScene]
 

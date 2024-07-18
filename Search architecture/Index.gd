@@ -17,7 +17,6 @@ func _ready():
 # If scene is not known, searches all scenes in index.
 func find_line(target: RipLine, scene_key: int=-1):
 	var found
-	var search_range = range(scenes.size())
 	if scene_key == -1:
 		# in absence of a defined start point, start at the beginning
 		scene_key = 0

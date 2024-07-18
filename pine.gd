@@ -1,5 +1,10 @@
 extends GDPine
 
+@export var read_targets: Array = [
+	[&'msg_id', &'ReadMany', 0x00B16DD0, 4],
+	[&'src_bytes', &'ReadMany', 0x00B155F4, 304]
+]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.init_default_ipc(PCSX2)
@@ -8,11 +13,11 @@ func _ready():
 func _process(_delta):
 	pass
 
-func get_current_line():
-	var msg_id = self.Read32(0x00B16DD0)
-	# Longest line we have in the script is 304 bytes, so check up to that much and trim.
-	var src_bytes: PackedByteArray = self.ReadMany(0x00B155F4, 304, true)
+func read_current():
+	var params = {
+		&'msg_id': ReadMany(0x00B16DD0, 4, false).decode_s32(0),
+		&'src_bytes': ReadMany(0x00B155F4, 304, true)
+	}
 	var result = RipLine.new()
-	result._setup({'msg_id': msg_id, 'src_bytes': src_bytes}, true)
+	result._setup(params, true)
 	return result
-	

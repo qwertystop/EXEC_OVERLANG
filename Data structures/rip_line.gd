@@ -11,7 +11,8 @@ extends Resource
 @export var text: String
 @export var src_bytes: PackedByteArray
 
-const metadata_display_template = "ID: %d, 0: %d, 1: %d, 2: %d, 4: %d, 5: %d"
+const display_template_meta = "RipLine (ID: %d, 0: %d, 1: %d, 2: %d, 4: %d, 5: %d)"
+const display_template = display_template_meta + "\nData: %s"
 
 func _setup(params: Dictionary, partial_ok: bool = false):
 	if not partial_ok:
@@ -53,6 +54,9 @@ func compare(other: RipLine):
 		return false
 	else:
 		return true
-
+		
 func readable_meta():
-	return metadata_display_template % [msg_id, unk0, unk1, unk2, unk4, unk5]
+	return display_template_meta % [msg_id, unk0, unk1, unk2, unk4, unk5]
+	
+func _to_string():
+	return display_template % [msg_id, unk0, unk1, unk2, unk4, unk5, text if text else src_bytes]
